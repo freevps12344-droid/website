@@ -30,7 +30,6 @@ animation: zoomBg 20s infinite alternate ease-in-out;
 100%{background-size:110%;}
 }
 
-/* Dark Overlay */
 body::before{
 content:"";
 position:fixed;
@@ -42,8 +41,8 @@ background:linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.95));
 z-index:-1;
 }
 
-/* ===== TOPBAR ===== */
-.topbar{
+/* ===== NAVBAR ===== */
+.navbar{
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -62,40 +61,19 @@ color:#ff2e63;
 text-shadow:0 0 20px #ff2e63;
 }
 
-.menu{
-cursor:pointer;
-font-size:28px;
-}
-
-.dropdown{
-display:none;
-position:absolute;
-right:40px;
-top:70px;
-background:rgba(0,0,0,0.95);
-border-radius:12px;
-padding:10px;
-width:180px;
-}
-
-.dropdown a{
-display:block;
-padding:12px;
-color:white;
+.nav-links a{
+margin-left:25px;
 text-decoration:none;
-border-radius:8px;
+color:white;
+font-weight:600;
 transition:0.3s;
 }
 
-.dropdown a:hover{
-background:#ff2e63;
+.nav-links a:hover{
+color:#ff2e63;
 }
 
-.show{
-display:block;
-}
-
-/* ===== HERO SECTION ===== */
+/* ===== HERO ===== */
 .hero{
 height:90vh;
 display:flex;
@@ -149,19 +127,23 @@ gap:30px;
 }
 
 .rank{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(15px);
 padding:30px;
 border-radius:20px;
 width:270px;
 transition:0.4s;
+backdrop-filter:blur(15px);
 border:1px solid rgba(255,255,255,0.1);
 }
 
 .rank:hover{
 transform:translateY(-15px);
-box-shadow:0 0 35px #ff2e63;
 }
+
+/* Rank Colors */
+.vip{ background:rgba(255,215,0,0.1); box-shadow:0 0 25px gold; }
+.mvp{ background:rgba(0,191,255,0.1); box-shadow:0 0 25px deepskyblue; }
+.legend{ background:rgba(186,85,211,0.1); box-shadow:0 0 25px mediumorchid; }
+.immortal{ background:rgba(255,69,0,0.1); box-shadow:0 0 25px orangered; }
 
 .rank h3{
 font-size:24px;
@@ -169,9 +151,9 @@ margin-bottom:10px;
 }
 
 .price{
-margin:10px 0;
-color:#00c3ff;
+margin:15px 0;
 font-weight:bold;
+color:#00ffcc;
 }
 
 .buy-btn{
@@ -200,11 +182,10 @@ color:#777;
 
 <body>
 
-<div class="topbar">
+<div class="navbar">
 <div class="logo">💖 Heart SMP</div>
 
-<div class="menu" onclick="toggleMenu()">☰</div>
-<div id="dropdown" class="dropdown">
+<div class="nav-links">
 <a href="#home">Home</a>
 <a href="#store">Store</a>
 <a href="https://discord.gg/ZCvYDamuC" target="_blank">Discord</a>
@@ -226,34 +207,40 @@ play.heartsmp.qzz.io:25655
 
 <div class="rank-container">
 
-<div class="rank">
+<div class="rank vip">
 <h3>VIP</h3>
+<p>• Special Chat Color</p>
+<p>• 2 Homes</p>
+<p>• Kit VIP</p>
 <p class="price">₹99</p>
-<button class="buy-btn" onclick="buyRank()">Buy Now</button>
+<button class="buy-btn" onclick="buyRank('VIP')">Buy Now</button>
 </div>
 
-<div class="rank">
+<div class="rank mvp">
 <h3>MVP</h3>
+<p>• All VIP Perks</p>
+<p>• 5 Homes</p>
+<p>• Fly in Spawn</p>
 <p class="price">₹199</p>
-<button class="buy-btn" onclick="buyRank()">Buy Now</button>
+<button class="buy-btn" onclick="buyRank('MVP')">Buy Now</button>
 </div>
 
-<div class="rank">
+<div class="rank legend">
 <h3>Legend</h3>
-<p class="price">₹499</p>
-<button class="buy-btn" onclick="buyRank()">Buy Now</button>
+<p>• All MVP Perks</p>
+<p>• 10 Homes</p>
+<p>• Special Kit</p>
+<p class="price">₹399</p>
+<button class="buy-btn" onclick="buyRank('Legend')">Buy Now</button>
 </div>
 
-<div class="rank">
-<h3>Admin</h3>
-<p class="price">₹999</p>
-<button class="buy-btn" onclick="buyRank()">Buy Now</button>
-</div>
-
-<div class="rank">
-<h3>Owner</h3>
-<p class="price">₹1999</p>
-<button class="buy-btn" onclick="buyRank()">Buy Now</button>
+<div class="rank immortal">
+<h3>Immortal</h3>
+<p>• All Legend Perks</p>
+<p>• Custom Tag</p>
+<p>• Exclusive Items</p>
+<p class="price">₹699</p>
+<button class="buy-btn" onclick="buyRank('Immortal')">Buy Now</button>
 </div>
 
 </div>
@@ -264,17 +251,14 @@ play.heartsmp.qzz.io:25655
 </footer>
 
 <script>
-function toggleMenu(){
-document.getElementById("dropdown").classList.toggle("show");
-}
-
 function copyIP(){
 navigator.clipboard.writeText("play.heartsmp.qzz.io:25655");
 alert("Server IP Copied!");
 }
 
-function buyRank(){
+function buyRank(rank){
 window.open("https://discord.gg/ZCvYDamuC","_blank");
+alert("To buy " + rank + " rank, join our Discord server!");
 }
 </script>
 
